@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="bootstrap-4.5.0-dist/css/bootstrap.css">
 	<script src="jquery-1.8.2.js"></script>
 	<script src="layer/layer.js" type="text/javascript"></script>
-	<script type="text/javascript" src="jquery.barcode.js"></script>
+	<script type="text/javascript" src="jquery.qrcode.js"></script>
 </head>
 
 <style type="text/css">
@@ -29,7 +29,7 @@
 			<h1>箱号扫描1</h1>
 		</div>
 		<div class="col-lg-12">
-			<input id="barCode" value="" type="text" placeholder="扫入箱码" style="" name="">
+			<input id="barCode" value="" type="text" placeholder="扫入箱码" style="display: none;" name="">
 		</div>
 		<div class="col-lg-12">
 			<div id="info" style="width: 500px;margin: 0 auto">
@@ -39,32 +39,71 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#barCode").startListen({
-			barcodeLen: 17,
-			letter: true,
-			number: true,
-			check: false,
+		// $("#barCode").startListen({
+		// 	barcodeLen: 17,
+		// 	letter: true,
+		// 	number: true,
+		// 	check: false,
+		// 	show: function (code) {
+		// 		//layer.msg(code);
+		// 		alert(code);
+		// 		// var param = {
+		// 		// 	"boxNum": code
+		// 		// };
+		// 		// var url = "/cy_erp/code/exportByBoxNum.do?";
+		// 		// $.post(url, param, function (result) {
+		// 		// 	console.log(result.state);
+		// 		// 	if (result.state == 1) {
+		// 		// 		window.open(result.data);
+		// 		// 		$('#info').html('');
+		// 		// 		$('#info').prepend("<h3>" + code + "</h3>");
+		// 		// 	} else if (result.state == 0) {
+		// 		// 		alert(result.msg);
+		// 		// 	} else {
+		// 		// 		alert("导出失败!");
+		// 		// 	}
+		// 		// }, "json")
+		// 	}
+		// });
+
+
+		// let code = '';
+		// let lastTime, nextTime;
+		// let lastCode, nextCode;
+		// window.document.onkeypress = (e) => {
+		// 	if (window.event) { // IE
+		// 		nextCode = e.keyCode;
+		// 	} else if (e.which) { // Netscape/Firefox/Opera
+		// 		nextCode = e.which;
+		// 	}
+		// 	if (nextCode === 13) {
+		// 		if (code.length < 3) return; // 手动输入的时间不会让code的长度大于2，所以这里只会对扫码枪有
+
+		// 		console.log(code); // 获取到扫码枪输入的内容，做别的操作
+
+		// 		code = '';
+		// 		lastCode = '';
+		// 		lastTime = '';
+		// 		return;
+		// 	}
+		// 	nextTime = new Date().getTime();
+		// 	if (!lastTime && !lastCode) {
+		// 		code += e.key;
+		// 	}
+
+		// 	if (lastCode && lastTime && nextTime - lastTime > 30) { // 当扫码前有keypress事件时,防止首字缺失
+		// 		code = e.key;
+		// 	} else if (lastCode && lastTime) {
+		// 		code += e.key;
+		// 	}
+		// 	lastCode = nextCode;
+		// 	lastTime = nextTime;
+		// }
+
+		$(document).startListen({
 			show: function (code) {
 				layer.msg(code);
-				//alert(code);
-				// var param = {
-				// 	"boxNum": code
-				// };
-				// var url = "/cy_erp/code/exportByBoxNum.do?";
-				// $.post(url, param, function (result) {
-				// 	console.log(result.state);
-				// 	if (result.state == 1) {
-				// 		window.open(result.data);
-				// 		$('#info').html('');
-				// 		$('#info').prepend("<h3>" + code + "</h3>");
-				// 	} else if (result.state == 0) {
-				// 		alert(result.msg);
-				// 	} else {
-				// 		alert("导出失败!");
-				// 	}
-				// }, "json")
 			}
-
 		});
 	</script>
 </body>

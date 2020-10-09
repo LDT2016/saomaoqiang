@@ -60,7 +60,10 @@
     on_key_press: function () {
       var that = this;
       this.listenerObj.keypress(function (e) {
-        if (e.which == 13 && that.check_barcode()) {
+        // if (e.which == 13 && that.check_barcode()) {
+        //   that.createListEl();
+        // }
+        if (e.which == 13) {
           that.createListEl();
         }
       });
